@@ -555,7 +555,7 @@ return view.extend({
 			this.value('', _('-- Please choose --'));
 			uci.sections(data[0], 'ruleset', (res) => {
 				if (res.enabled === '1')
-					this.value(res.label, res.label);
+					this.value(res['.name'], res.label);
 			});
 
 			return this.super('load', section_id);
@@ -1083,7 +1083,7 @@ return view.extend({
 		so.depends('enable_clash_api', '1');
 
 		so = ss.option(form.Value, 'external_ui_download_url', _('UI Download link'),
-			_('<code>https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip</code> will be used if empty.'));
+			_('<code>https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip</code> will be used if empty.'));
 		so.depends('enable_clash_api', '1');
 
 		so = ss.option(form.ListValue, 'external_ui_download_detour', _('UI Download detour'),

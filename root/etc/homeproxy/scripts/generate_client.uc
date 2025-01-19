@@ -671,7 +671,7 @@ if (routing_mode === 'custom') {
 		clash_api: {
 			external_controller: (enable_clash_api === '1') ? external_controller : null,
 			external_ui: external_ui,
-			external_ui_download_url: external_ui_download_url,
+			external_ui_download_url: external_ui_download_url || 'https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip',
 			external_ui_download_detour: external_ui_download_detour,
 			secret: secret,
 			default_mode: default_mode
