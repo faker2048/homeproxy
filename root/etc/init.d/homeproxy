@@ -155,6 +155,7 @@ start_service() {
 
 		procd_set_param command "$PROG"
 		procd_append_param command run --config "$RUN_DIR/sing-box-c.json"
+		procd_set_param env ENABLE_DEPRECATED_TUN_ADDRESS_X=true
 
 		if [ -x "/sbin/ujail" ] && [ "$routing_mode" != "custom" ] && ! grep -Eq '"type": "(wireguard|tun)"' "$RUN_DIR/sing-box-c.json"; then
 			procd_add_jail "sing-box-c" log procfs
@@ -240,6 +241,7 @@ start_service() {
 
 		procd_set_param command "$PROG"
 		procd_append_param command run --config "$RUN_DIR/sing-box-s.json"
+		procd_set_param env ENABLE_DEPRECATED_TUN_ADDRESS_X=true
 
 		if [ -x "/sbin/ujail" ]; then
 			procd_add_jail "sing-box-s" log procfs
