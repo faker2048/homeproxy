@@ -514,14 +514,17 @@ if (match(proxy_mode, /tproxy/))
 		sniff: true,
 		sniff_override_destination: (sniff_override === '1')
 	});
-if (match(proxy_mode, /tun/))
+if (match(proxy_mode, /tun/)) {
+	let tun_addresses = [tun_addr4];
+	if (ipv6_support === '1')
+		push(tun_addresses, tun_addr6);
+
 	push(config.inbounds, {
 		type: 'tun',
 		tag: 'tun-in',
 
 		interface_name: tun_name,
-		inet4_address: tun_addr4,
-		inet6_address: (ipv6_support === '1') ? tun_addr6 : null,
+		address: tun_addresses,
 		mtu: strToInt(tun_mtu),
 		gso: (tun_gso === '1'),
 		auto_route: false,
@@ -530,6 +533,7 @@ if (match(proxy_mode, /tun/))
 		sniff: true,
 		sniff_override_destination: (sniff_override === '1'),
 	});
+}
 /* Inbound end */
 
 /* Outbound start */
