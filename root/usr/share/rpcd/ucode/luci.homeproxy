@@ -29,7 +29,7 @@ const methods = {
 				return { content: null, error: 'illegal type' };
 
 			const filecontent = readfile(`${HP_DIR}/resources/${req.args?.type}.txt`);
-			return { content: filecontent };
+			return { content: filecontent || '' };
 		}
 	},
 	acllist_write: {
